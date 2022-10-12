@@ -30,7 +30,7 @@ async def get_movies(url):
 
 @bot.on_message(filters.command(["/","start"]))
 async def start(bot, message):
-    await bot.send_message(message.chat.id, "Use this bot to search movies\nexample : /search moviename \n BOT Made by @IRoleEx")
+    await bot.send_message(message.chat.id, "Use this bot to search movies\nexample : /search moviename \n BOT Made by @IRoleEx and @Wisdak1")
  
 @bot.on_message(filters.command(['/',"search"]))
 async def sm(bot,message):
@@ -38,7 +38,7 @@ async def sm(bot,message):
     url = 'https://vegamovies.baby/?s=' + movie_name
     print(url)
     results = await get_movies(url)
-    await message.reply_text("Searching.. \n\n BY Mr.XED")
+    await message.reply_text("Searching.. \n\n BY Mr.XED & Teams.")
     await message.reply(results)
 
 
