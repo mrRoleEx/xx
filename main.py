@@ -1,46 +1,104 @@
+import re
 
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
+from pyrogram.client import Client
+
 # text = input('type movie name:- ')
 # url = 'https://vegamovies.baby/?s=' + text
 
-bot = Client("bot", bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
-             api_id=1712043, api_hash="965c994b615e2644670ea106fd31daaf")
-#a = input("Enter the message: ")
+bot = Client(
+    "bot",
+    bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
+    api_id=1712043,
+    api_hash="965c994b615e2644670ea106fd31daaf",
+)
+# a = input("Enter the message: ")
 
 
-async def get_movies(url):
+# text = input('type movie name:- ')
+# url = 'https://vegamovies.baby/?s=' + text
+
+
+
+
+async def getmovie(url):
     response = requests.get(url)
     html = response.content.decode()
-    soup = BeautifulSoup(html, 'html.parser')
-    n = soup.find("div", {"class": "blog-items blog-items-control site__row movie-grid"})
-    s = n.find_all('a')
-
+    soup = BeautifulSoup(html, "html.parser")
+    link = soup.find_all("div", attrs={"class": "A2"})
     array = []
-    for linnk in s:
-        array.append(linnk.get('href'))
-        if len(array) == 6:
-            break
-
-    result = array[:5]
-    # print(result)
-    return "\n".join(result)
-
-
-@bot.on_message(filters.command(["/","start"]))
-async def start(bot, message):
-    await bot.send_message(message.chat.id, "Use this bot to search movies\nexample : /search moviename \n BOT Made by @IRoleEx and @Wisdak1")
- 
-@bot.on_message(filters.command(['/',"search"]))
-async def sm(bot,message):
-    movie_name = " ".join(message.command[1:])
-    url = 'https://vegamovies.baby/?s=' + movie_name
     print(url)
-    results = await get_movies(url)
-    await message.reply_text("Searching.. \n\n BY Mr.XED & Teams.")
-    await message.reply(results)
+    for linnk in link:
+        array.append(linnk.find("a").get("href"))
+        if len(array) == 10:
+            break
+    result = array[:11]
+    w = "https://filmy4wap.dev".join(result)
+    g = "https://filmy4wap.dev" + w
+    y = g.split(".html")
+    
+ 
+    #step : 2 - finding download link in Search result
+
+    url2 = y[0]
+    res = requests.get(url2)
+    html2 = res.content.decode()
+    soup2 = BeautifulSoup(html2,'html.parser')
+    #link2 = soup2.find_all('a.href')
+    for linkk in soup2.find_all('a',
+        attrs={'href': re.compile("^/page-downloading-page/")}):
+        break
+        #print(linkk.get('href'))  
+
+    reallink = linkk.get('href')
+    t =  "".join(reallink)
+    k = "https://filmy4wap.dev" + t
+
+    #print (k)
+    #print ('\n')
 
 
-if __name__=="__main__":
+    url3 = k
+    res2 = requests.get(url3)
+    html3 = res2.content.decode()
+    soup3 = BeautifulSoup(html3,'html.parser')
+    for linkk1 in soup3.find_all('a',
+        attrs={'href': re.compile("^https://link2me.xyz/")}):
+        break
+    jaadu = linkk1.get('href')
+    #print (jaadu)
+
+    url4 = jaadu
+    res3 = requests.get(url4)
+    html4 = res3.content.decode()
+    soup4 = BeautifulSoup(html4,'html.parser')
+    super = soup4.find_all("div", attrs={"class": "dlink dl"})
+
+    resse = []
+    for linkk2 in super:
+        resse.append(linkk2.find('a').get('href'))
+        #finlink = linkk2.find('a').get('href')
+    finlink = resse  
+    print (finlink)
+    return "\n".join(finlink)
+
+    
+       
+
+@bot.on_message(filters.command("start"))
+def start(bot, message):
+    bot.send_message(message.chat.id,"Welcome to MovieSearcher Bot\n Use this bot to search movies \n ex:- /Search moviename \nnote :- We didn't Allow piracy Bot use only Webscrapping algo. ")
+@bot.on_message(filters.command(['search']))
+async def sm(bot,message):
+    await bot.send_message(message.chat.id,"Searching.... \n Bot By @IRoleEx \n Support US...")
+    movie_name = " ".join(message.command[1:])
+    url = 'https://filmy4wap.dev/site-1.html?to-search=' + movie_name
+    resuult = await getmovie(url)
+    await bot.send_message(message.chat.id,'Results of : '+ movie_name)
+    await bot.send_message(message.chat.id,resuult)
+    await bot.send_message(message.chat.id,'By @iRoleEx')
+
+if __name__ == "__main__":
     bot.run()
