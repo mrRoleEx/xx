@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram import InputContactMessageContent
+
 
 bot = Client(
     "bot",
