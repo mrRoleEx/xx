@@ -1,14 +1,12 @@
-from dataclasses import replace
 import re
+from dataclasses import replace
 
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.client import Client
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import InputContactMessageContent
-
-# text = input('type movie name:- ')
-# url = 'https://vegamovies.baby/?s=' + text
 
 bot = Client(
     "bot",
@@ -16,14 +14,6 @@ bot = Client(
     api_id=1712043,
     api_hash="965c994b615e2644670ea106fd31daaf",
 )
-# a = input("Enter the message: ")
-
-
-# text = input('type movie name:- ')
-# url = 'https://vegamovies.baby/?s=' + text
-
-
-
 
 async def getmovie(url):
     response = requests.get(url)
@@ -40,86 +30,102 @@ async def getmovie(url):
     w = "https://filmy4wap.dev".join(result)
     g = "https://filmy4wap.dev" + w
     y = g.split(".html")
-    
- 
-    #step : 2 - finding download link in Search result
-
     url2 = y[0]
     res = requests.get(url2)
     html2 = res.content.decode()
-    soup2 = BeautifulSoup(html2,'html.parser')
-    imglin = soup2.find_all("div",attrs={"class":"movie-thumb"})
+    soup2 = BeautifulSoup(html2, "html.parser")
+    imglin = soup2.find_all("div", attrs={"class": "movie-thumb"})
     imig = []
+
     for imag in imglin:
-        #print(imag.find('img').get('src'))
-        imig.append(imag.find('img').get('src'))
-        #print(imag.get('src'))
+        imig.append(imag.find("img").get("src"))
         break
-    #print (imag.get('src'))
+
     global imgres
     imgres = imig
-    #imgres = imgrs.replace(" ","%")
-    #print(type(imgres))
-    #print(imgres)
+    
     str1 = ""
     for iimglink in imgres:
         str1 += iimglink
         break
+
     global fiinalimage2
-    fiinalimage = str1.replace(" ","%")
+    fiinalimage = str1.replace(" ", "%20")
     fiinalimage2 = fiinalimage
     print(fiinalimage2)
 
-    for linkk in soup2.find_all('a',
-        attrs={'href': re.compile("^/page-downloading-page/")}):
+    for linkk in soup2.find_all(
+        "a", attrs={"href": re.compile("^/page-downloading-page/")}
+    ):
         break
-    reallink = linkk.get('href')
-    t =  "".join(reallink)
+    reallink = linkk.get("href")
+    t = "".join(reallink)
     k = "https://filmy4wap.dev" + t
-
-    #print (k)
-    #print ('\n')
-
 
     url3 = k
     res2 = requests.get(url3)
     html3 = res2.content.decode()
-    soup3 = BeautifulSoup(html3,'html.parser')
-    for linkk1 in soup3.find_all('a',
-        attrs={'href': re.compile("^https://link2me.xyz/")}):
+    soup3 = BeautifulSoup(html3, "html.parser")
+    for linkk1 in soup3.find_all(
+        "a", attrs={"href": re.compile("^https://link2me.xyz/")}
+    ):
         break
-    jaadu = linkk1.get('href')
-    #print (jaadu)
+    jaadu = linkk1.get("href")
     url4 = jaadu
     res3 = requests.get(url4)
     html4 = res3.content.decode()
-    soup4 = BeautifulSoup(html4,'html.parser')
+    soup4 = BeautifulSoup(html4, "html.parser")
     super = soup4.find_all("div", attrs={"class": "dlink dl"})
+    super6 = soup4.find_all("div", class_="dll")
+
+    xxlink = []
+    for strrr in super6:
+        xxlink.append(strrr.text)
+
+    str5 = "\n"
+    for i in xxlink:
+        str5 += i
+        if str5 == "":
+            str5 = "No link found"
+            break
+
+    po = str5.replace(",",  "\n")
+    poo = po.replace("] ", "\n")
+    pooo = poo.replace("]", "")
+    poooo = pooo.replace("[", "!! ")
+    print(poooo)
+
+
 
     resse = []
-    for linkk2 in super:
-        resse.append(linkk2.find('a').get('href'))
-        #finlink = linkk2.find('a').get('href')
-    finlink = resse  
-    #print (finlink)
-    return "\n".join(finlink)
 
-    
-       
+    for linkk2 in super:
+        resse.append(linkk2.find("a").get("href"))
+
+    global finlink
+    finlink = resse
+    return "\n\n".join(finlink) + "".join(poooo)
+
 
 @bot.on_message(filters.command("start"))
 def start(bot, message):
-    bot.send_message(message.chat.id,"Welcome to MovieSearcher Bot\n Use this bot to search movies \n ex:- /Search moviename \nnote :- We didn't Allow piracy Bot use only Webscrapping algo. ")
-@bot.on_message(filters.command(['search']))
-async def sm(bot,message):
-    await bot.send_message(message.chat.id,"Searching.... \n Bot By @IRoleEx \n Support US...")
+    bot.send_message(
+        message.chat.id,
+        "Welcome to MovieSearcher Bot\n Use this bot to search movies \n\n ex:- /Search moviename \n\nnote :- We didn't Allow piracy \nBot use only Webscrapping algo. ",
+    )
+
+
+@bot.on_message(filters.command(["search"]))
+async def sm(bot, message):
+    await bot.send_message(message.chat.id,"searching.......")
     movie_name = " ".join(message.command[1:])
-    url = 'https://filmy4wap.dev/site-1.html?to-search=' + movie_name
+    url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     resuult = await getmovie(url)
-    await bot.send_message(message.chat.id,'Results of : '+ movie_name)
-    #await bot.send_photo(message.chat.id, fiinalimage2)
-    await bot.send_message(message.chat.id,resuult)
-    await bot.send_message(message.chat.id,"bot by @iRoleEx")
+    await bot.send_message(message.chat.id, "Results of : " + "**" + movie_name + "**")
+    await bot.send_photo(message.chat.id, fiinalimage2)
+    if resuult == "":
+        await bot.send_message(message.chat.id, "No link found")
+    await bot.send_message(message.chat.id, resuult)
 
 if __name__ == "__main__":
-    bot.run()
+    bot.run(print("bot started"))
