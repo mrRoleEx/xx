@@ -165,5 +165,5 @@ async def sm(bot, message):
     #await bot.send_message(message.chat.id, resuult)
 
 
-if name == "__main__":
+if __name__ == "__main__":
     bot.run(print("bot started"))
