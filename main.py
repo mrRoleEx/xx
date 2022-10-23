@@ -32,20 +32,6 @@ async def getmovie(url):
     res = requests.get(url2)
     html2 = res.content.decode()
     soup2 = BeautifulSoup(html2, "html.parser")
-    imglin = soup2.find_all("div", attrs={"class": "movie-thumb"})
-    imig = []
-
-    for imag in imglin:
-        imig.append(imag.find("img").get("src"))
-        break
-
-    global imgres
-    imgres = imig
-
-    str1 = ""
-    for iimglink in imgres:
-        str1 += iimglink
-        break
 
     global fiinalimage2
     fiinalimage = str1.replace(" ", "%20")
@@ -161,7 +147,7 @@ async def sm(bot, message):
     #await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
     # create a button using for loop for resse list
 
-    await bot.send_photo(message.chat.id, fiinalimage2,caption="Results of : " + "" + movie_name + "",reply_markup=resuult)
+    await bot.send_photo(message.chat.id,caption="Results of : " + "" + movie_name + "",reply_markup=resuult)
     #await bot.send_message(message.chat.id, resuult)
 
 
