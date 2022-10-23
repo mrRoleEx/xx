@@ -140,11 +140,11 @@ async def sm(bot, message):
     movie_name = " ".join(message.command[1:])
     url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     resuult = await getmovie(url)
-    #await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
+    await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
     # create a button using for loop for resse list
 
     await bot.send_message(message.chat.id,reply_markup=resuult)
-    #await bot.send_message(message.chat.id, resuult)
+    #await bot.send_message(message.chat.id,"results are:- ",resuult)
 
 
 if __name__ == "__main__":
