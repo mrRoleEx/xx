@@ -33,10 +33,6 @@ async def getmovie(url):
     html2 = res.content.decode()
     soup2 = BeautifulSoup(html2, "html.parser")
 
-    global fiinalimage2
-    fiinalimage = str1.replace(" ", "%20")
-    fiinalimage2 = fiinalimage
-    #print(fiinalimage2)
 
     for linkk in soup2.find_all(
         "a", attrs={"href": re.compile("^/page-downloading-page/")}
