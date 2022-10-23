@@ -143,7 +143,7 @@ async def sm(bot, message):
     #await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
     # create a button using for loop for resse list
 
-    await bot.send_message(message.chat.id,caption="Results of : " + "" + movie_name + "",reply_markup=resuult)
+    await bot.send_message(message.chat.id,reply_markup=resuult)
     #await bot.send_message(message.chat.id, resuult)
 
 
