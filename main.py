@@ -108,11 +108,13 @@ async def getmovie(url,url2):
     res2 = requests.get(url3)
     html3 = res2.content.decode()
     soup3 = BeautifulSoup(html3, "html.parser")
+    jaadu=None
     for linkk1 in soup3.find_all(
         "a", attrs={"href": re.compile("^https://link2me.xyz/")}
     ):
+        jaadu = linkk1.get("href",None)
         break
-    jaadu = linkk1.get("href")
+    
     if jaadu == None:
         return "No link found"
     
