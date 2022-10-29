@@ -3,16 +3,14 @@ import re
 from dataclasses import replace
 
 import requests
-import os
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
 
-bot = os.environ.get("bot")
-
-
+bot = Client("bot", bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
+             api_id=1712043, api_hash="965c994b615e2644670ea106fd31daaf")
 
 async def getmovie(url,url2):
     response = requests.get(url)
