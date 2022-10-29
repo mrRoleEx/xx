@@ -9,8 +9,8 @@ from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
 
-bot = Client("bot", bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
-             api_id=1712043, api_hash="965c994b615e2644670ea106fd31daaf")
+bot = Client("bot", bot_token= os.environ.get("bot_token"), api_id=os.environ.get("API_ID"), api_hash=  os.environ.get("API_HASH"))
+
 
 
 async def getmovie(url,url2):
