@@ -3,6 +3,7 @@ import re
 from dataclasses import replace
 
 import requests
+import os
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.client import Client
