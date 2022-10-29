@@ -9,8 +9,7 @@ from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
 
-bot = Client("bot", bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
-             api_id=1712043, api_hash="965c994b615e2644670ea106fd31daaf")
+
 
 
 async def getmovie(url,url2):
@@ -20,10 +19,13 @@ async def getmovie(url,url2):
     link = soup.find_all("div", attrs={"class": "A2"})
     array = []
     #print(url)
-    for linnk in link:
-        array.append(linnk.find("a").get("href"))
-        if len(array) == 10:
-            break
+    try:
+        for linnk in link:
+            array.append(linnk.find("a").get("href"))
+            if len(array) == 10:
+                break
+    except:
+        pass
     ResPons = requests.get(url2)
     EchTiml = ResPons.content.decode()
     Soup11 = BeautifulSoup(EchTiml, "html.parser")
@@ -200,21 +202,31 @@ def my_buttons(finlink,xxlink,n):
 
 @bot.on_message(filters.command(["search"]))
 async def sm(bot, message):
-    await bot.send_message(message.chat.id, "searching....... \n Bot by - @IRoleEx")
+    mess= await bot.send_message(message.chat.id, "searching....... \n Bot by - @IRoleEx")
     #button = ikb("Download", url=resse[1])
 
 #await bot.send_message(message.chat.id, "Download", reply_markup=ikm([[button]]))
     movie_name = " ".join(message.command[1:])
     url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
-    resuult = await getmovie(url, url2)
+    kinbin=True
+    try:
+        resuult = await getmovie(url, url2)
     
-    await bot.send_photo(message.chat.id,Finalpicture)
-    await bot.send_message(message.chat.id,"👇👇👇👇👇",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-    # create a button using for loop for resse list
-    print (Finalpicture)
-    await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
-    await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
+        await bot.send_photo(message.chat.id,Finalpicture)
+        await bot.send_message(message.chat.id,"ðŸ‘‡ðŸ‘‡ðŸ‘‡ðŸ‘‡ðŸ‘‡",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
+        await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
+        kinbin=False
+    except:
+        pass
+        
+    try:
+        await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
+        kinbin=False
+    except:
+        pass
+    if kinbin:
+        await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text[8:]+"'** Movie in my Database \n\nBot by - @IRoleEx")
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
