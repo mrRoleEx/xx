@@ -10,7 +10,7 @@ from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
 
-bot = Client("bot", bot_token= os.environ.get("bot_token"), api_id=os.environ.get("api_id"), api_hash=  os.environ.get("api_hash"))
+bot = os.environ.get("bot")
 
 
 
