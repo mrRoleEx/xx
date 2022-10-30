@@ -239,7 +239,7 @@ async def sm(bot, message):
         pass
         
     try:
-        await bot.send_photo(message.chat.id,":)",fiinalimage2)
+        await bot.send_photo(message.chat.id,fiinalimage2)
         await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
         kinbin=False
     except:
