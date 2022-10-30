@@ -96,6 +96,24 @@ async def getmovie(url,url2):
     res = requests.get(url2)
     html2 = res.content.decode()
     soup2 = BeautifulSoup(html2, "html.parser")
+     imglin = soup2.find_all("div", attrs={"class": "movie-thumb"})
+    imig = []
+
+    for imag in imglin:
+        imig.append(imag.find("img").get("src"))
+        break
+
+    global imgres
+    imgres = imig
+
+    str1 = ""
+    for iimglink in imgres:
+        str1 += iimglink
+        break
+
+    global fiinalimage2
+    fiinalimage = str1.replace(" ", "%20")
+    fiinalimage2 = fiinalimage
 
 
     for linkk in soup2.find_all(
@@ -221,6 +239,7 @@ async def sm(bot, message):
         pass
         
     try:
+        await bot.send_photo(message.chat.id,":)",fiinalimage2)
         await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
         kinbin=False
     except:
