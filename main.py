@@ -180,7 +180,7 @@ async def getmovies (url3):
 
     for linki in link55:
         array55.append(linki.find("b").text)
-        if len(array55) == 4:
+        if len(array55) == 7:
             break
 
     global real_res
@@ -188,7 +188,7 @@ async def getmovies (url3):
 
     for relmin in array55:
         real_res += relmin + "\n\n"
-        if len(real_res) == 4:
+        if len(real_res) == 7:
                 break
     #print(real_res(-1))
         
