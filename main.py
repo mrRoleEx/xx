@@ -96,7 +96,7 @@ async def getmovie(url,url2):
     res = requests.get(url2)
     html2 = res.content.decode()
     soup2 = BeautifulSoup(html2, "html.parser")
-     imglin = soup2.find_all("div", attrs={"class": "movie-thumb"})
+    imglin = soup2.find_all("div", attrs={"class": "movie-thumb"})
     imig = []
 
     for imag in imglin:
