@@ -30,19 +30,11 @@ async def getmovie(url,url2):
     EchTiml = ResPons.content.decode()
     Soup11 = BeautifulSoup(EchTiml, "html.parser")
     ResultDekho = Soup11.find_all("div", attrs={"class": "title"})
-
-
-
-    
     ResultArr = []
-  
-    
-
-
     for RealResult in ResultDekho:
         ResultArr.append(RealResult.find("a").get("href")) 
         break
-    
+
     strarray = ""
     for realres in ResultArr:
         strarray = realres
@@ -179,7 +171,30 @@ async def getmovie(url,url2):
     
     return my_buttons(resse,xxlink,2)
 
+async def getmovies (url3):
+    response55 = requests.get(url3)
+    html55 = response55.content.decode()
+    soup55 = BeautifulSoup(html55, "html.parser")
+    link55 = soup55.find_all("div", attrs={"class": "A2"})
+    array55 = []
 
+    for linki in link55:
+        array55.append(linki.find("b").text)
+        if len(array55) == 4:
+            break
+
+    global real_res
+    real_res =  ""
+
+    for relmin in array55:
+        real_res += relmin + "\n\n"
+        if len(real_res) == 4:
+                break
+    #print(real_res(-1))
+        
+
+        
+    #print (real_res)
 @bot.on_message(filters.command("start"))
 def start(bot, message):
     bot.send_message(
@@ -248,6 +263,17 @@ async def sm(bot, message):
         await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text[8:]+"'** Movie in my Database \n\nBot by - @IRoleEx")
     
     #await bot.send_photo(message.chat.id, Finalpicture)
+
+@bot.on_message(filters.command(["latest"]))
+async def smp(bot, message):
+    
+    url3 = "https://filmy4wap.dev/site-1.html?to-search="
+    resuult2 = await getmovies(url3)
+    await bot.send_message(message.chat.id, "Here's are Some latest movies \n\n Bot by - @IRoleEx")
+    await bot.send_message(message.chat.id, "Results of : " + "" + "Latest Movies" + "")
+    await bot.send_message(message.chat.id, "Results are :- ",reply_markup=resuult2)
+    await bot.send_message(message.chat.id, real_res)
+
 
 
 if __name__ == "__main__":
