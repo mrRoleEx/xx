@@ -1,4 +1,3 @@
-
 import re
 from dataclasses import replace
 
@@ -233,34 +232,34 @@ def my_buttons(finlink,xxlink,n):
 
 
 
-@bot.on_message(filters.command(["search"]))
+@bot.on_message(filters.text)
 async def sm(bot, message):
     mess= await bot.send_message(message.chat.id, "searching....... \n Bot by - @IRoleEx")
     #button = ikb("Download", url=resse[1])
 
 #await bot.send_message(message.chat.id, "Download", reply_markup=ikm([[button]]))
-    movie_name = " ".join(message.command[1:])
+    movie_name = message.text
     url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
     kinbin=True
     try:
         resuult = await getmovie(url, url2)
     
-        await bot.send_photo(message.chat.id,Finalpicture)
-        await bot.send_message(message.chat.id,"ðŸ‘‡ðŸ‘‡ðŸ‘‡ðŸ‘‡ðŸ‘‡",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
+        await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
+        #await bot.send_message(message.chat.id,"冒鸥鈥樷€∶芭糕€樷€∶芭糕€樷€∶芭糕€樷€∶芭糕€樷€�",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
         await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
         kinbin=False
     except:
         pass
         
     try:
-        await bot.send_photo(message.chat.id,fiinalimage2)
-        await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
+        await bot.send_photo(message.chat.id,fiinalimage2,caption="Result are :- ",reply_markup=resuult)
+        #await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
         kinbin=False
     except:
         pass
     if kinbin:
-        await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text[8:]+"'** Movie in my Database \n\nBot by - @IRoleEx")
+        await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
