@@ -198,7 +198,7 @@ async def getmovies (url3):
 def start(bot, message):
     bot.send_message(
         message.chat.id,
-        "Welcome to MovieSearcher Bot\n Use this bot to search movies \n\n ex:- /Search moviename \n\nnote :- We didn't Allow piracy \nBot use only Webscrapping algo. ",
+        "Welcome to MovieSearcher Bot\n Use this bot to search movies \n\n ex:- Type only Movie name in the bot \n Use /latest command for checking the latest list of movies\n\nnote :- We didn't Allow piracy \nBot use only Webscrapping algo. ",
     )
     #create a button for finlink using for loop
 
