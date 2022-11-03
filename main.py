@@ -244,17 +244,17 @@ def my_channel_id(data):
                 return True
             else:
                 await c.send_message(m. 
-chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1")
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 /n Then can you Use the BOT")
                 return False
         except Exception as e:
             print("error "+str(e))
             await c.send_message(m. 
-chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1")
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 /n Then can you Use the BOT")
             return False
     return filters.create(get_my_member, data=data)
 
 
-@bot.on_message(filters.text & my_channel_id(-1001882630947))
+@bot.on_message(filters.text & my_channel_id(-1001859860307))
 async def sm(bot, message):
     mess= await bot.send_message(message.chat.id, "searching....... \n Bot by - @IRoleEx")
     #button = ikb("Download", url=resse[1])
