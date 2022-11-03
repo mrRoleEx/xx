@@ -230,7 +230,7 @@ def my_buttons(finlink,xxlink,n):
     NV1.append(NV2)
     #print(ikm(NV1))
     return ikm(NV1)
-def my_channal_id(data):
+def my_channel_id(data):
     async def get_my_member(_, c: Client, m: Message):
         #print(1)
         try:
