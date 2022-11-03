@@ -244,12 +244,12 @@ def my_channel_id(data):
                 return True
             else:
                 await c.send_message(m. 
-chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 /n Then can you Use the BOT")
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 \n Then can you Use the BOT")
                 return False
         except Exception as e:
             print("error "+str(e))
             await c.send_message(m. 
-chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 /n Then can you Use the BOT")
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 \n Then can you Use the BOT")
             return False
     return filters.create(get_my_member, data=data)
 
