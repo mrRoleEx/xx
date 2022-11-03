@@ -1,9 +1,10 @@
-import reee
+import re
 from dataclasses import replace
 
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
+from pyrogram.types import Message
 from pyrogram.client import Client
 from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
@@ -229,7 +230,28 @@ def my_buttons(finlink,xxlink,n):
     NV1.append(NV2)
     #print(ikm(NV1))
     return ikm(NV1)
-
+def my_channal_id(data):
+    async def get_my_member(_, c: Client, m: Message):
+        #print(1)
+        try:
+            user_id=m.from_user.id
+            #cmd = ['CREATOR','ADMINISTRATOR','MEMBER']
+            get = await c.get_chat_member(data, user_id)
+            status = get.status
+            
+            if status.ADMINISTRATOR or status.MEMBER or status.OWNER:
+                print("true")
+                return True
+            else:
+                await c.send_message(m. 
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1")
+                return False
+        except Exception as e:
+            print("error "+str(e))
+            await c.send_message(m. 
+chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1")
+            return False
+    return filters.create(get_my_member, data=data)
 
 
 @bot.on_message(filters.text)
