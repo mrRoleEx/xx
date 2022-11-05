@@ -1,4 +1,4 @@
-import reeee
+import re
 from dataclasses import replace
 import time
 import requests
@@ -268,14 +268,18 @@ async def sm(bot, message):
         resuult = await getmovie(url, url2)
     
         await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-        #await bot.send_message(message.chat.id,"冒鸥鈥樷€∶芭糕€樷€∶芭糕€樷€∶芭糕€樷€∶芭糕€樷€�",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-        await bot.send_message(message.chat.id, "Results of : " + "" + movie_name + "")
+        await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+        time.sleep(2)
+        await bot.delete_messages(message.chat.id,mess.id)
         kinbin=False
     except:
         pass
         
     try:
         await bot.send_photo(message.chat.id,fiinalimage2,caption="Result are :- ",reply_markup=resuult)
+        await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+        time.sleep(2)
+        await bot.delete_messages(message.chat.id,mess.id)
         #await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
         kinbin=False
     except:
