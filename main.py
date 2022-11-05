@@ -1,6 +1,6 @@
 import reeee
 from dataclasses import replace
-
+import time
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
@@ -282,6 +282,8 @@ async def sm(bot, message):
         pass
     if kinbin:
         await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
+        time.sleep(5)
+        await bot.delete_messages(message.chat.id, mess.id)
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
