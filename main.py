@@ -1,5 +1,5 @@
 import re
-import Tgcrypto
+import TgCrypto
 from dataclasses import replace
 import time
 import requests
