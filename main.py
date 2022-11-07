@@ -264,6 +264,8 @@ async def sm(bot, message):
     url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
     kinbin=True
+    await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
+
     try:
         resuult = await getmovie(url,url2)
     
@@ -301,7 +303,7 @@ async def smp(bot, message):
     await bot.send_message(message.chat.id, "Results of : " + "" + "Latest Movies" + "")
     await bot.send_message(message.chat.id, "Results are :- ",reply_markup=resuult2)
     await bot.send_message(message.chat.id, real_res)
-
+    
 
 
 if __name__ == "__main__":
