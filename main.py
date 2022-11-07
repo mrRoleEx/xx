@@ -286,11 +286,11 @@ async def sm(bot, message):
         kinbin=False
     except:
         pass
-    #if kinbin:
-        #time.sleep(5)
-        #await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
-        #time.sleep(3)
-        #await bot.delete_messages(message.chat.id, mess.id)
+    if kinbin:
+        time.sleep(5)
+        await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
+        time.sleep(3)
+        await bot.delete_messages(message.chat.id, mess.id)
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
