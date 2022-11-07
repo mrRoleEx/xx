@@ -10,7 +10,7 @@ from pyrogram.types import InlineKeyboardButton as ikb
 from pyrogram.types import InlineKeyboardMarkup as ikm
 
 bot = Client("bot", bot_token="5744404637:AAFs-pq3UL34jqW1nti4eP8KOC8kf4Ncs_Q",
-             api_id=1712043, api_hash="965c994b615e2644670ea106fd31daaf")
+             api_id="1712043", api_hash="965c994b615e2644670ea106fd31daaf")
 
 async def getmovie(url,url2):
     response = requests.get(url)
@@ -62,7 +62,7 @@ async def getmovie(url,url2):
             break
         #print(strpic)
     
-    global Finalpicture 
+    #global Finalpicture 
     Finalpicture = strpic
     for mainlink in ResultDekho7:
         Arr8.append(mainlink.find("a").get("href"))
@@ -169,7 +169,7 @@ async def getmovie(url,url2):
 
     maxx = len(resse)
     
-    return my_buttons(resse,xxlink,2)
+    return my_buttons(resse,xxlink,2),Finalpicture
 
 async def getmovies (url3):
     response55 = requests.get(url3)
@@ -230,6 +230,7 @@ def my_buttons(finlink,xxlink,n):
     NV1.append(NV2)
     #print(ikm(NV1))
     return ikm(NV1)
+
 def my_channel_id(data):
     async def get_my_member(_, c: Client, m: Message):
         #print(1)
@@ -254,7 +255,7 @@ chat.id, "Join first https://t.me/+gs2qlZP-I1hiZmY1 \n Then can you Use the BOT"
     return filters.create(get_my_member, data=data)
 
 
-@bot.on_message(filters.text & my_channel_id(-1001859860307))
+@bot.on_message(filters.text & my_channel_id(-1001859860307)& filters.incoming)
 async def sm(bot, message):
     mess= await bot.send_message(message.chat.id, "searching....... \n Bot by - @IRoleEx")
     #button = ikb("Download", url=resse[1])
@@ -264,32 +265,31 @@ async def sm(bot, message):
     url = "https://filmy4wap.dev/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
     kinbin=True
-
+    resuult=True
     try:
-        
+        resuult,Finalpicture = await getmovie(url, url2)
     
         await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+        time.sleep(2)
         await bot.delete_messages(message.chat.id,mess.id)
-        time.sleep(1)
         kinbin=False
     except:
         pass
         
     try:
-        resuult = await getmovie(url,url2)
         await bot.send_photo(message.chat.id,fiinalimage2,caption="Result are :- ",reply_markup=resuult)
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
-     
+        time.sleep(2)
         await bot.delete_messages(message.chat.id,mess.id)
         #await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
-        time.sleep(1)
         kinbin=False
     except:
         pass
     if kinbin:
+        time.sleep(2)
         await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
-        time.sleep(1)
+        time.sleep(3)
         await bot.delete_messages(message.chat.id, mess.id)
     
     #await bot.send_photo(message.chat.id, Finalpicture)
@@ -303,7 +303,7 @@ async def smp(bot, message):
     await bot.send_message(message.chat.id, "Results of : " + "" + "Latest Movies" + "")
     await bot.send_message(message.chat.id, "Results are :- ",reply_markup=resuult2)
     await bot.send_message(message.chat.id, real_res)
-    
+
 
 
 if __name__ == "__main__":
