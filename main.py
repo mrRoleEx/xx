@@ -1,6 +1,5 @@
 import re
 from dataclasses import replace
-import tgcrypto
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -271,7 +270,6 @@ async def sm(bot, message):
     
         await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
-        time.sleep(2)
         await bot.delete_messages(message.chat.id,mess.id)
         kinbin=False
     except:
@@ -281,15 +279,13 @@ async def sm(bot, message):
         resuult = await getmovie(url,url2)
         await bot.send_photo(message.chat.id,fiinalimage2,caption="Result are :- ",reply_markup=resuult)
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
-        time.sleep(2)
+     
         await bot.delete_messages(message.chat.id,mess.id)
         #await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
         kinbin=False
     except:
         pass
-    time.sleep(5)
     if kinbin:
-        time.sleep(2)
         await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
         time.sleep(1)
         await bot.delete_messages(message.chat.id, mess.id)
