@@ -265,7 +265,7 @@ async def sm(bot, message):
     url2 = "https://hdmovie91.com/?s=" + movie_name
     kinbin=True
     try:
-        resuult = await getmovie(url, url2)
+        resuult = await getmovie(url,url2)
     
         await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
@@ -284,11 +284,11 @@ async def sm(bot, message):
         kinbin=False
     except:
         pass
-    if kinbin:
-        time.sleep(5)
-        await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
-        time.sleep(3)
-        await bot.delete_messages(message.chat.id, mess.id)
+    #if kinbin:
+        #time.sleep(5)
+        #await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
+        #time.sleep(3)
+        #await bot.delete_messages(message.chat.id, mess.id)
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
