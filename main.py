@@ -1,4 +1,4 @@
-import ree
+import re
 from dataclasses import replace
 import time
 import requests
