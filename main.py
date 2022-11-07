@@ -1,4 +1,5 @@
 import re
+import Tgcrypto
 from dataclasses import replace
 import time
 import requests
@@ -284,7 +285,7 @@ async def sm(bot, message):
         kinbin=False
     except:
         pass
-    if kinbin:
+    if kinbin = False:
         time.sleep(2)
         await bot.edit_message_text(mess.chat.id, mess.id,"Can not find **'"+message.text+"'** Movie in my Database \n\nBot by - @IRoleEx")
         time.sleep(3)
