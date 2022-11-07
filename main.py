@@ -1,5 +1,6 @@
 import re
 from dataclasses import replace
+import TgCrypto
 import time
 import requests
 from bs4 import BeautifulSoup
