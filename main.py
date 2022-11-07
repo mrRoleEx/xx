@@ -271,6 +271,7 @@ async def sm(bot, message):
         await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
         await bot.delete_messages(message.chat.id,mess.id)
+        time.sleep(1)
         kinbin=False
     except:
         pass
@@ -282,6 +283,7 @@ async def sm(bot, message):
      
         await bot.delete_messages(message.chat.id,mess.id)
         #await bot.send_message(message.chat.id,"Result are :- ",reply_markup=resuult)
+        time.sleep(1)
         kinbin=False
     except:
         pass
