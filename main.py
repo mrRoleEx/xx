@@ -266,17 +266,13 @@ async def sm(bot, message):
     url2 = "https://hdmovie91.com/?s=" + movie_name
     kinbin=True
     resuult=True
-    try:
-        resuult,Finalpicture = await getmovie(url, url2)
+    resuult,Finalpicture = await getmovie(url, url2)
     
-        await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-        await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
-        time.sleep(2)
-        await bot.delete_messages(message.chat.id,mess.id)
-        kinbin=False
-    except:
-        pass
-        
+    await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
+    await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+    time.sleep(2)
+    await bot.delete_messages(message.chat.id,mess.id)
+    kinbin=False
     try:
         await bot.send_photo(message.chat.id,fiinalimage2,caption="Result are :- ",reply_markup=resuult)
         await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
