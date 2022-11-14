@@ -81,8 +81,8 @@ async def getmovie(url,url2):
    
 
     result = array[:11]
-    w = "https://filmy4wap.dev".join(result)
-    g = "https://filmy4wap.dev" + w
+    w = "https://filmy4wap.plus".join(result)
+    g = "https://filmy4wap.plus" + w
     y = g.split(".html")
     url2 = y[0]
     res = requests.get(url2)
@@ -264,8 +264,6 @@ async def sm(bot, message):
     movie_name = message.text
     url = "https://filmy4wap.plus/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
-    kinbin=True
-    resuult=True
     resuult,Finalpicture = await getmovie(url, url2)
     
     await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
