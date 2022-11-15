@@ -267,7 +267,7 @@ async def sm(bot, message):
     resuult,Finalpicture = await getmovie(url, url2)
     await bot.send_message(message.chat.id, FinalResultT)
     #await bot.send_photo(message.chat.id,"c",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-    wait bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+    await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
     #time.sleep(2)
     #await bot.delete_messages(message.chat.id,mess.id)
     #kinbin=False
