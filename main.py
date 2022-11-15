@@ -265,7 +265,7 @@ async def sm(bot, message):
     url = "https://www.filmy4wap.plus/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
     resuult,Finalpicture = await getmovie(url, url2)
-    await bot.send_message(message.chat.id, FinalResultT)
+    await bot.send_message(message.chat.id, Finalpicture)
     await bot.send_message(message.chat.id, resuult)
     #await bot.send_photo(message.chat.id,"c",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
     await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
