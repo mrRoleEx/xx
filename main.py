@@ -262,22 +262,22 @@ async def sm(bot, message):
 
 #await bot.send_message(message.chat.id, "Download", reply_markup=ikm([[button]]))
     movie_name = message.text
-    url = "https://filmy4wap.plus/site-1.html?to-search=" + movie_name
+    url = "https://www.filmy4wap.plus/site-1.html?to-search=" + movie_name
     url2 = "https://hdmovie91.com/?s=" + movie_name
     resuult,Finalpicture = await getmovie(url, url2)
-    
-    await bot.send_photo(message.chat.id,Finalpicture,reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
-    await bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
-    time.sleep(2)
-    await bot.delete_messages(message.chat.id,mess.id)
-    kinbin=False
+    await bot.send_message(message.chat.id, FinalResultT)
+    #await bot.send_photo(message.chat.id,"c",reply_markup=ikm([[ikb(text="Download", url=FinalResultT)]]))
+    wait bot.edit_message_text(message.chat.id,mess.id,"Search Completed 😊")
+    #time.sleep(2)
+    #await bot.delete_messages(message.chat.id,mess.id)
+    #kinbin=False
     
     #await bot.send_photo(message.chat.id, Finalpicture)
 
 @bot.on_message(filters.command(["latest"]))
 async def smp(bot, message):
     
-    url3 = "https://filmy4wap.dev/site-1.html?to-search="
+    url3 = "https://www.filmy4wap.plus/site-1.html?to-search="
     resuult2 = await getmovies(url3)
     await bot.send_message(message.chat.id, "Here's are Some latest movies \n\n Bot by - @IRoleEx")
     await bot.send_message(message.chat.id, "Results of : " + "" + "Latest Movies" + "")
